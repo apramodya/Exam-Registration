@@ -5,6 +5,7 @@ let cors = require('cors');
 let passport = require('passport');
 let mongoose = require('mongoose');
 let config = require('./config/database');
+const users = require('./routes/users');
 
 // mongo db using mlab
 mongoose.connect(config.database);
@@ -17,10 +18,16 @@ const app = express();
 // CORS middleware
 app.use(cors());
 
+// body parse
+app.use(bodyParser.json());
+
 // passport middleware
-// app.use(passport.initialize());
-// app.use(passport.session());
-// require('./config/passport')(passport);
+app.use(passport.initialize());
+app.use(passport.session());
+require('./config/passport')(passport);
+
+
+app.use('/users', users);
 
 //index route
 app.get('/', function (req, res) {
