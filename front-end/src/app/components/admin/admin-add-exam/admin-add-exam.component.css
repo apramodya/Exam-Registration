@@ -1,0 +1,15 @@
+h3{
+  text-align: center;
+}
+.container{
+  margin-top: 30px;
+}
+.red{
+  color: red;
+}
+hr{
+  margin-left: 20%;
+  width: 900px;
+  background-color: black;
+  border-width: medium;
+}

@@ -1,18 +1,53 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
 
+import {AppComponent} from './app.component';
+import {NavbarComponent} from './components/navbar/navbar.component';
+import {HomeComponent} from './components/home/home.component';
+import {LoginComponent} from './components/login/login.component';
+import {ExamRegistrationComponent} from './components/student/exam-registration/exam-registration.component';
+import {AdminDashboardComponent} from './components/admin/admin-dashboard/admin-dashboard.component';
+import {StudentDashboardComponent} from './components/student/student-dashboard/student-dashboard.component';
+import {RouterModule, Routes} from "@angular/router";
+import {FormsModule} from "@angular/forms";
+import { AdminSidebarComponent } from './components/admin/admin-sidebar/admin-sidebar.component';
+import { AdminAddExamComponent } from './components/admin/admin-add-exam/admin-add-exam.component';
+import { AdminAddUserComponent } from './components/admin/admin-add-user/admin-add-user.component';
+import { AdminCurrentStatusComponent } from './components/admin/admin-current-status/admin-current-status.component';
 
-import { AppComponent } from './app.component';
+const appRoutes: Routes = [
+  {path: '', component: HomeComponent},
+  {path: 'exam/register', component: ExamRegistrationComponent},
+  {path: 'login', component: LoginComponent},
+  {path: 'admin/dashboard', component: AdminDashboardComponent},
+  {path: 'student/dashboard', component: StudentDashboardComponent},
+  {path: 'admin/add-exam', component: AdminAddExamComponent},
+  {path: 'admin/add-user', component: AdminAddUserComponent},
+  {path: 'admin/add-current-status', component: AdminCurrentStatusComponent},
 
+];
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NavbarComponent,
+    HomeComponent,
+    LoginComponent,
+    ExamRegistrationComponent,
+    AdminDashboardComponent,
+    StudentDashboardComponent,
+    AdminSidebarComponent,
+    AdminAddExamComponent,
+    AdminAddUserComponent,
+    AdminCurrentStatusComponent,
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    RouterModule.forRoot(appRoutes),
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
