@@ -37,6 +37,7 @@ router.post('/authenticate', (req, res, next) => {
                 });
                 res.json({
                     success: true,
+                    msg: 'You are logged in',
                     token: 'JWT ' + token,
                     user: {
                         id: user._id,
