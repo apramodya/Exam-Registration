@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const Course = require('../models/courses');
-const config = require('../config/database');
 
 // add course
 router.post('/add', function (req, res, next) {
