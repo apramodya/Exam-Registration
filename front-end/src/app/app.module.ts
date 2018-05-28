@@ -10,10 +10,15 @@ import {AdminDashboardComponent} from './components/admin/admin-dashboard/admin-
 import {StudentDashboardComponent} from './components/student/student-dashboard/student-dashboard.component';
 import {RouterModule, Routes} from "@angular/router";
 import {FormsModule} from "@angular/forms";
-import { AdminSidebarComponent } from './components/admin/admin-sidebar/admin-sidebar.component';
-import { AdminAddExamComponent } from './components/admin/admin-add-exam/admin-add-exam.component';
-import { AdminAddUserComponent } from './components/admin/admin-add-user/admin-add-user.component';
-import { AdminCurrentStatusComponent } from './components/admin/admin-current-status/admin-current-status.component';
+import {AdminSidebarComponent} from './components/admin/admin-sidebar/admin-sidebar.component';
+import {AdminAddExamComponent} from './components/admin/admin-add-exam/admin-add-exam.component';
+import {AdminAddUserComponent} from './components/admin/admin-add-user/admin-add-user.component';
+import {AdminCurrentStatusComponent} from './components/admin/admin-current-status/admin-current-status.component';
+import {FlashMessagesModule, FlashMessagesService} from "angular2-flash-messages";
+import {HttpClientModule} from "@angular/common/http";
+import {AuthService} from "./services/auth.service";
+import {ValidateService} from "./services/validate.service";
+import {CourseService} from "./services/course.service";
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},
@@ -44,9 +49,11 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule,
     RouterModule.forRoot(appRoutes),
-    FormsModule
+    FormsModule,
+    FlashMessagesModule.forRoot(),
+    HttpClientModule,
   ],
-  providers: [],
+  providers: [AuthService, ValidateService, FlashMessagesService, CourseService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

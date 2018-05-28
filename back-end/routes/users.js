@@ -15,9 +15,9 @@ router.post('/register', (req, res, next) => {
         password: req.body.index_number
     });
     User.addUser(newUser, function (err, user) {
-        if (err) return res.json({success: false, msg: 'Failed to register user'});
-        else return res.json({success: true, msg: 'Registered user'});
-    })
+        if (err) return res.json({success: false, msg: 'Failed to register user', err: err});
+        else return res.json({success: true, msg: 'Registered user', user: user});
+    });
 });
 
 // authenticate
@@ -57,7 +57,7 @@ router.post('/authenticate', (req, res, next) => {
 
 // profile
 router.get('/profile', passport.authenticate('jwt', {session: false}), (req, res, next) => {
-    res.json({ user: req.user});
+    res.json({user: req.user});
 });
 
 module.exports = router;

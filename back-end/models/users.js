@@ -36,13 +36,15 @@ module.exports.getUserByIndexNumber = function (index_number, callback) {
     User.findOne(query, callback);
 };
 module.exports.addUser = function (user, callback) {
-    bcrypt.genSalt(10, function (err, salt) {
-        bcrypt.hash(user.password, salt, function (err, hash) {
-            if (err) throw err;
-            user.password = hash;
-            user.save(callback);
-        })
-    })
+    User.create(user, callback);
+
+    // bcrypt.genSalt(10, function (err, salt) {
+    //     bcrypt.hash(user.password, salt, function (err, hash) {
+    //         if (err) throw err;
+    //         user.password = hash;
+    //         user.save(callback);
+    //     })
+    // })
 };
 module.exports.comparePassword = function (candidatePassword, hash, callback) {
     bcrypt.compare(candidatePassword, hash, function (err, isMatch) {
