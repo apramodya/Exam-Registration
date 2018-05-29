@@ -9,6 +9,13 @@ const StatusSchema = mongoose.Schema({
     semester: {
         type: Number,
         required: true
+    },
+    allow: {
+        type: Boolean,
+        required: true
+    },
+    deadline: {
+        type: Date
     }
 });
 
@@ -28,7 +35,9 @@ module.exports.updateStatus = function (id, status, callback) {
         {
             $set: {
                 examination_year: status.examination_year,
-                semester: status.semester
+                semester: status.semester,
+                allow: status.allow,
+                deadline: status.deadline
             }
         }, callback
     );

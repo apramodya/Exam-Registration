@@ -12,7 +12,9 @@ router.get('/get', function (req, res, next) {
             status: {
                 id: status._id,
                 examination_year: status.examination_year,
-                semester: status.semester
+                semester: status.semester,
+                allow: status.allow,
+                deadline: status.deadline
             }
         })
     })
@@ -22,7 +24,9 @@ router.get('/get', function (req, res, next) {
 router.post('/add', function (req, res, next) {
     let newStatus = new Status({
         examination_year: req.body.examination_year,
-        semester: req.body.semester
+        semester: req.body.semester,
+        allow: req.body.allow,
+        deadline: req.body.deadline
     });
     Status.addStatus(newStatus, function (err, status) {
         if (err) return res.json({success: false, msg: 'Failed to add status'});
@@ -34,7 +38,9 @@ router.post('/add', function (req, res, next) {
 router.put('/update/:id', function (req, res, next) {
     let status = new Status({
         examination_year: req.body.examination_year,
-        semester: req.body.semester
+        semester: req.body.semester,
+        allow: req.body.allow,
+        deadline: req.body.deadline
     });
     Status.updateStatus(req.params.id, status, function (err, status) {
         if (err) return res.json({success: false, msg: 'Failed to update status'});

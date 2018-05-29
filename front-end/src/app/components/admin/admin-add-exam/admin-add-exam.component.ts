@@ -23,7 +23,6 @@ export class AdminAddExamComponent implements OnInit {
 
   ngOnInit() {
     this.courseService.getCourses().subscribe(courses => {
-        console.log(courses);
         this.courses = courses;
       },
       error1 => {

@@ -2,14 +2,15 @@ import {Injectable} from '@angular/core';
 import 'rxjs/add/operator/map';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs/Observable";
+import {StatusService} from "./status.service";
 
 @Injectable()
 export class CourseService {
 
-  year : Number;
+  semester: Number = 1;
 
-  constructor(private http: HttpClient) {
-    this.year = 1;
+  constructor(private http: HttpClient, private statusService: StatusService) {
+
   }
 
   addCourse(course): Observable<any> {
@@ -20,11 +21,14 @@ export class CourseService {
       .map(data => data);
   }
 
-  getCourses(): Observable<any> {
+  getCourses(){
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
     });
-    return this.http.get('http://localhost:3000/courses/getCoursesByYear/'+this.year, {headers: headers})
+    this.statusService.getStatus().subscribe(data => {
+      this.semester = data.status.semester;
+    });
+    return this.http.get('http://localhost:3000/courses/getCoursesBySemester/' + this.semester, {headers: headers})
       .map(data => data);
   }
 }

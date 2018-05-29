@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {StatusService} from "../../../services/status.service";
 import {FlashMessagesService} from "angular2-flash-messages";
 import {Router} from "@angular/router";
+import {D} from "@angular/core/src/render3";
 
 @Component({
   selector: 'app-admin-current-status',
@@ -12,6 +13,8 @@ export class AdminCurrentStatusComponent implements OnInit {
 
   year: Number;
   semester: Number;
+  allow: Boolean;
+  deadline: Date;
   id: String;
 
   constructor(private statusService: StatusService, private flashMessages: FlashMessagesService, private router: Router) {
@@ -22,6 +25,8 @@ export class AdminCurrentStatusComponent implements OnInit {
       this.id = data.status.id;
       this.year = data.status.examination_year;
       this.semester = data.status.semester;
+      this.allow = data.status.allow;
+      this.deadline = data.status.deadline;
     });
   }
 
@@ -29,7 +34,9 @@ export class AdminCurrentStatusComponent implements OnInit {
 
     const status = {
       examination_year: this.year,
-      semester: this.semester
+      semester: this.semester,
+      allow: this.allow,
+      deadline: this.deadline
     };
     this.statusService.updateStatus(this.id, status).subscribe(data => {
       if (data.success) {
