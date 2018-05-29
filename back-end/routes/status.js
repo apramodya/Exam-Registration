@@ -26,7 +26,7 @@ router.post('/add', function (req, res, next) {
     });
     Status.addStatus(newStatus, function (err, status) {
         if (err) return res.json({success: false, msg: 'Failed to add status'});
-        else return res.json({success: true, msg: 'Added status'});
+        else return res.json({success: true, msg: 'Added status', status: status});
     })
 });
 
@@ -38,7 +38,7 @@ router.put('/update/:id', function (req, res, next) {
     });
     Status.updateStatus(req.params.id, status, function (err, status) {
         if (err) return res.json({success: false, msg: 'Failed to update status'});
-        else return res.json({success: true, msg: 'Updated status'});
+        else return res.json({success: true, msg: 'Updated status', status: status});
     })
 });
 

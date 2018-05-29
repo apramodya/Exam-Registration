@@ -19,6 +19,7 @@ import {HttpClientModule} from "@angular/common/http";
 import {AuthService} from "./services/auth.service";
 import {ValidateService} from "./services/validate.service";
 import {CourseService} from "./services/course.service";
+import {StatusService} from "./services/status.service";
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},
@@ -53,7 +54,7 @@ const appRoutes: Routes = [
     FlashMessagesModule.forRoot(),
     HttpClientModule,
   ],
-  providers: [AuthService, ValidateService, FlashMessagesService, CourseService],
+  providers: [AuthService, ValidateService, FlashMessagesService, CourseService, StatusService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
