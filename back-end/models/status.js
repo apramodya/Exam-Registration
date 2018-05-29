@@ -2,19 +2,34 @@ var mongoose = require('mongoose');
 
 // Status schema
 const StatusSchema = mongoose.Schema({
-    examination_year: {
+    u_examination_year: {
         type: Number,
         required: true
     },
-    semester: {
+    u_semester: {
         type: Number,
         required: true
     },
-    allow: {
+    u_allow: {
         type: Boolean,
         required: true
     },
-    deadline: {
+    u_deadline: {
+        type: Date
+    },
+    p_examination_year: {
+        type: Number,
+        required: true
+    },
+    p_semester: {
+        type: Number,
+        required: true
+    },
+    p_allow: {
+        type: Boolean,
+        required: true
+    },
+    p_deadline: {
         type: Date
     }
 });
@@ -34,10 +49,14 @@ module.exports.updateStatus = function (id, status, callback) {
         {_id: id},
         {
             $set: {
-                examination_year: status.examination_year,
-                semester: status.semester,
-                allow: status.allow,
-                deadline: status.deadline
+                p_examination_year: status.p_examination_year,
+                p_semester: status.p_semester,
+                p_allow: status.p_allow,
+                p_deadline: status.p_deadline,
+                u_examination_year: status.u_examination_year,
+                u_semester: status.u_semester,
+                u_allow: status.u_allow,
+                u_deadline: status.u_deadline
             }
         }, callback
     );

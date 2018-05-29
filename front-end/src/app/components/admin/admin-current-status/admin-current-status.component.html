@@ -5,28 +5,63 @@
     <div class="col-md-2 d-none d-md-block"></div>
     <div class="col-md-10 d-none d-md-block">
       <h3>Set Current Status</h3>
-      <form (submit)="onSubmit();">
-        <div class="form-group">
-          <label>Examination Year</label>
-          <input type="number" class="form-control" placeholder="Enter examination year" [(ngModel)]="year" name="year">
+      <hr>
+      <div class="row">
+        <div class="col-md-6">
+          <form (submit)="onSubmit();">
+            <h4 class="text-black-50">Undergraduates</h4>
+            <div class="form-group">
+              <label>Examination Year</label>
+              <input type="number" class="form-control" placeholder="Enter examination year" [(ngModel)]="u_year"
+                     name="u_year">
+            </div>
+            <div class="form-group">
+              <label>Examination Semester</label>
+              <select class="form-control" [(ngModel)]="u_semester" name="u_semester">
+                <option value="1">1</option>
+                <option value="2">2</option>
+              </select>
+            </div>
+            <div class="form-check">
+              <input type="checkbox" class="form-check-input" [(ngModel)]="u_allow" name="u_allow" [checked]="u_allow">
+              <label class="form-check-label">Allow Receiving Applications</label>
+            </div>
+            <div class="form-group">
+              <label>Deadline</label>
+              <input type="date" class="form-control" placeholder="Enter deadline for applications"
+                     [(ngModel)]="u_deadline" name="u_deadline">
+            </div>
+            <input type="submit" class="btn btn-outline-dark" value="Submit">
+          </form>
         </div>
-        <div class="form-group">
-          <label>Examination Semester</label>
-          <select class="form-control" [(ngModel)]="semester" name="semester">
-            <option value="1">1</option>
-            <option value="2">2</option>
-          </select>
+        <div class="col-md-6">
+          <form (submit)="onSubmit();">
+            <h4 class="text-black-50">Postgraduates</h4>
+            <div class="form-group">
+              <label>Examination Year</label>
+              <input type="number" class="form-control" placeholder="Enter examination year" [(ngModel)]="p_year"
+                     name="p_year">
+            </div>
+            <div class="form-group">
+              <label>Examination Semester</label>
+              <select class="form-control" [(ngModel)]="p_semester" name="p_semester">
+                <option value="1">1</option>
+                <option value="2">2</option>
+              </select>
+            </div>
+            <div class="form-check">
+              <input type="checkbox" class="form-check-input" [(ngModel)]="p_allow" name="p_allow" [checked]="p_allow">
+              <label class="form-check-label">Allow Receiving Applications</label>
+            </div>
+            <div class="form-group">
+              <label>Deadline</label>
+              <input type="date" class="form-control" placeholder="Enter deadline for applications"
+                     [(ngModel)]="p_deadline" name="p_deadline">
+            </div>
+            <input type="submit" class="btn btn-outline-dark" value="Submit">
+          </form>
         </div>
-        <div class="form-check">
-          <input type="checkbox" class="form-check-input" [(ngModel)]="allow" name="allow" [checked]="allow">
-          <label class="form-check-label">Allow Receiving Applications</label>
-        </div>
-        <div class="form-group">
-          <label>Deadline</label>
-          <input type="date" class="form-control" placeholder="Enter deadline for applications" [(ngModel)]="deadline" name="deadline">
-        </div>
-        <input type="submit" class="btn btn-outline-dark" value="Submit">
-      </form>
+      </div>
     </div>
   </div>
 </div>

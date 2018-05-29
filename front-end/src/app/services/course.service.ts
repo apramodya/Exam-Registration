@@ -21,7 +21,7 @@ export class CourseService {
       .map(data => data);
   }
 
-  getCourses(){
+  getCourses(): Observable<any> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
     });

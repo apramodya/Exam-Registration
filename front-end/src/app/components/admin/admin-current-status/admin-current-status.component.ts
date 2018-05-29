@@ -11,11 +11,15 @@ import {D} from "@angular/core/src/render3";
 })
 export class AdminCurrentStatusComponent implements OnInit {
 
-  year: Number;
-  semester: Number;
-  allow: Boolean;
-  deadline: Date;
   id: String;
+  u_year: Number;
+  u_semester: Number;
+  u_allow: Boolean;
+  u_deadline: Date;
+  p_year: Number;
+  p_semester: Number;
+  p_allow: Boolean;
+  p_deadline: Date;
 
   constructor(private statusService: StatusService, private flashMessages: FlashMessagesService, private router: Router) {
   }
@@ -23,20 +27,28 @@ export class AdminCurrentStatusComponent implements OnInit {
   ngOnInit() {
     this.statusService.getStatus().subscribe(data => {
       this.id = data.status.id;
-      this.year = data.status.examination_year;
-      this.semester = data.status.semester;
-      this.allow = data.status.allow;
-      this.deadline = data.status.deadline;
+      this.u_year = data.status.u_examination_year;
+      this.u_semester = data.status.u_semester;
+      this.u_allow = data.status.u_allow;
+      this.u_deadline = data.status.u_deadline;
+      this.p_year = data.status.p_examination_year;
+      this.p_semester = data.status.p_semester;
+      this.p_allow = data.status.p_allow;
+      this.p_deadline = data.status.p_deadline;
     });
   }
 
   onSubmit() {
 
     const status = {
-      examination_year: this.year,
-      semester: this.semester,
-      allow: this.allow,
-      deadline: this.deadline
+      p_examination_year: this.p_year,
+      p_semester: this.p_semester,
+      p_allow: this.p_allow,
+      p_deadline: this.p_deadline,
+      u_examination_year: this.u_year,
+      u_semester: this.u_semester,
+      u_allow: this.u_allow,
+      u_deadline: this.u_deadline
     };
     this.statusService.updateStatus(this.id, status).subscribe(data => {
       if (data.success) {
