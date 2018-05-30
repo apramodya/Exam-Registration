@@ -3,7 +3,7 @@
   <h2>Exam Registration Portal</h2>
   <h5>Register your self for the coming final exams!</h5>
   <div class="">
-    <a class="btn btn-outline-dark" routerLink="login">Login</a>
+    <a *ngIf="!authService.loggedIn()" class="btn btn-outline-dark" routerLink="login">Login</a>
   </div>
 </div>
 

@@ -29,6 +29,14 @@
           <input type="text" class="form-control" placeholder="Enter year enrolled (2018)" [(ngModel)]="year"
                  name="year">
         </div>
+        <div class="form-group">
+          <label>User Type<span class="red">*</span></label>
+          <select class="custom-select" [(ngModel)]="type" name="type" >
+            <option selected value="1">Undergraduate</option>
+            <option value="2">Postgraduate</option>
+            <option value="3">Admin</option>
+          </select>
+        </div>
         <input type="submit" class="btn btn-outline-dark" value="Register">
       </form>
     </div>

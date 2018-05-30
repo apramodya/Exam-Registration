@@ -21,16 +21,16 @@ import {ValidateService} from "./services/validate.service";
 import {CourseService} from "./services/course.service";
 import {StatusService} from "./services/status.service";
 
+
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},
-  {path: 'exam/register', component: ExamRegistrationComponent},
+  {path: 'student/register-exam', component: ExamRegistrationComponent},
   {path: 'login', component: LoginComponent},
   {path: 'admin/dashboard', component: AdminDashboardComponent},
   {path: 'student/dashboard', component: StudentDashboardComponent},
-  {path: 'admin/add-exam', component: AdminAddExamComponent},
-  {path: 'admin/add-user', component: AdminAddUserComponent},
-  {path: 'admin/add-current-status', component: AdminCurrentStatusComponent},
-
+  {path: 'admin/add-exam', component: AdminAddExamComponent, canActivate: []},
+  {path: 'admin/add-user', component: AdminAddUserComponent, canActivate: []},
+  {path: 'admin/add-current-status', component: AdminCurrentStatusComponent, canActivate: []},
 ];
 
 @NgModule({

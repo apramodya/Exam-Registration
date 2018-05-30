@@ -12,6 +12,7 @@ router.post('/register', (req, res, next) => {
         email: req.body.email,
         registration_number: req.body.registration_number,
         index_number: req.body.index_number,
+        type: req.body.type,
         password: req.body.index_number
     });
     User.addUser(newUser, function (err, user) {
@@ -28,7 +29,7 @@ router.post('/authenticate', (req, res, next) => {
         if (err) throw err;
         if (!user) {
             return res.json({success: false, msg: 'Failed to find user'})
-        }
+        };
         User.comparePassword(password, user.password, function (err, isMatch) {
             if (err) throw err;
             if (isMatch) {
@@ -44,7 +45,8 @@ router.post('/authenticate', (req, res, next) => {
                         name: user.name,
                         email: user.email,
                         index_number: user.index_number,
-                        registration_number: user.registration_number
+                        registration_number: user.registration_number,
+                        type: user.type
                     }
                 })
             }

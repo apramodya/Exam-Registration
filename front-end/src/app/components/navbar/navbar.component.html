@@ -7,12 +7,16 @@
 
   <div class="collapse navbar-collapse">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item"><a class="nav-link" routerLinkActive="active" routerLink="/" [routerLinkActiveOptions]="{ exact: true }">Home</a></li>
-      <li class="nav-item"><a class="nav-link" routerLinkActive="active" routerLink="admin/dashboard">Dashboard</a></li>
-      <li class="nav-item"><a class="nav-link" routerLinkActive="active" routerLink="student/dashboard">S Dashboard</a></li>
+      <li class="nav-item"><a class="nav-link" routerLinkActive="active" routerLink="/"
+                              [routerLinkActiveOptions]="{ exact: true }">Home</a></li>
+      <li class="nav-item"><a *ngIf="authService.isAdmin()" class="nav-link" routerLinkActive="active"
+                              routerLink="admin/dashboard">Dashboard</a></li>
+      <li class="nav-item"><a *ngIf="authService.isUndergraduate()" class="nav-link" routerLinkActive="active"
+                              routerLink="student/dashboard">Dashboard</a></li>
     </ul>
     <ul class="navbar-nav ml-auto">
-      <li class="nav-item"><a class="nav-link" routerLinkActive="active" href="#">Logout</a></li>
+      <li class="nav-item"><a class="nav-link" *ngIf="authService.loggedIn()" href="#"
+                              (click)="onLogoutClick()">Logout</a></li>
     </ul>
   </div>
 </nav>

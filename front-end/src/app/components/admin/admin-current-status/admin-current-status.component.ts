@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {StatusService} from "../../../services/status.service";
 import {FlashMessagesService} from "angular2-flash-messages";
 import {Router} from "@angular/router";
-import {D} from "@angular/core/src/render3";
 
 @Component({
   selector: 'app-admin-current-status',

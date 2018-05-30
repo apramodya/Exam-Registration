@@ -16,6 +16,7 @@ export class AdminAddUserComponent implements OnInit {
   index_number: Number;
   registration_number: String;
   year: Number;
+  type: Number;
 
   constructor(private router: Router, private flashMessages: FlashMessagesService, private authService: AuthService, private validateService: ValidateService) {
   }
@@ -30,6 +31,7 @@ export class AdminAddUserComponent implements OnInit {
       index_number: this.index_number,
       registration_number: this.registration_number,
       year: this.year,
+      type: this.type,
       password: this.index_number
     };
 

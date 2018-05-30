@@ -21,6 +21,10 @@ const UserSchema = mongoose.Schema({
     year_enrolled: {
         type: Number
     },
+    type: {
+        type: Number,
+        required: true
+    },
     password: {
         type: String
     }
@@ -38,13 +42,13 @@ module.exports.getUserByIndexNumber = function (index_number, callback) {
 module.exports.addUser = function (user, callback) {
     User.create(user, callback);
 
-    // bcrypt.genSalt(10, function (err, salt) {
-    //     bcrypt.hash(user.password, salt, function (err, hash) {
-    //         if (err) throw err;
-    //         user.password = hash;
-    //         user.save(callback);
-    //     })
-    // })
+    bcrypt.genSalt(10, function (err, salt) {
+        bcrypt.hash(user.password, salt, function (err, hash) {
+            if (err) throw err;
+            user.password = hash;
+            user.save(callback);
+        });
+    });
 };
 module.exports.comparePassword = function (candidatePassword, hash, callback) {
     bcrypt.compare(candidatePassword, hash, function (err, isMatch) {
