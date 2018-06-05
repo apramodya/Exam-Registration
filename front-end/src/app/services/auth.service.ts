@@ -52,6 +52,9 @@ export class AuthService {
   loadToken() {
     this.authToken = localStorage.getItem('id_token');
   };
+  loadType(){
+    this.type = localStorage.getItem('type');
+  }
 
   loggedIn(){
     return tokenNotExpired('id_token');
@@ -65,16 +68,19 @@ export class AuthService {
   };
 
   isUndergraduate(){
+    this.loadType();
     if (this.type == 1)
       return true;
   };
 
   isPostgraduate(){
+    this.loadType();
     if (this.type == 2)
       return true;
   };
 
   isAdmin(){
+    this.loadType();
     if (this.type == 3)
       return true;
   };

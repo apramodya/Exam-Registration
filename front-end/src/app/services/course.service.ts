@@ -9,9 +9,7 @@ export class CourseService {
 
   semester: Number = 1;
 
-  constructor(private http: HttpClient, private statusService: StatusService) {
-
-  }
+  constructor(private http: HttpClient, private statusService: StatusService) {}
 
   addCourse(course): Observable<any> {
     const headers = new HttpHeaders({

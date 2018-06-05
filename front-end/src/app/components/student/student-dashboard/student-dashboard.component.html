@@ -3,22 +3,23 @@
     <div class="col-md-4">
       <div class="card">
         <div class="card-body">
-          <h5 class="card-title">Pramodya Abeysinghe</h5>
+          <h5 class="card-title">{{ user.name}}</h5>
           <h6 class="card-subtitle mb-2 text-muted">Undergraduate - 3rd Year</h6>
           <h6 class="card-subtitle mb-2 text-muted">Computer Science</h6>
           <br>
           <ul class="list-group">
-            <li class="list-group-item">Email: </li>
-            <li class="list-group-item">Registration Number:</li>
-            <li class="list-group-item">Index Number:</li>
+            <li class="list-group-item">Email: {{ user.email}}</li>
+            <li class="list-group-item">Registration Number: {{ user.registration_number}}</li>
+            <li class="list-group-item">Index Number: {{ user.index_number}}</li>
           </ul>
           <br>
-          <a href="#" class="btn btn-outline-dark btn-block">Register for Subjects</a><br>
+          <a routerLink="/student/register-exam" class="btn btn-outline-dark btn-block">Register for Subjects</a><br>
           <a href="#" class="btn btn-outline-dark btn-block">Download Timetable</a>
         </div>
       </div>
     </div>
     <div class="col-md-8">
+      <p class="" *ngIf="courses">have</p>
       <table class="table">
         <thead>
         <tr>
@@ -30,12 +31,12 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
-          <th scope="row">1</th>
-          <td>Programming I</td>
-          <td>SCS1001</td>
-          <td>1</td>
-          <td>1</td>
+        <tr *ngFor="let course of courses; let i = index">
+          <th scope="row">{{ i+1}}</th>
+          <td>{{ course.course_name}}</td>
+          <td>{{ course.course_code}}</td>
+          <td>{{ course.year}}</td>
+          <td>{{ course.semester}}</td>
         </tr>
         </tbody>
       </table>

@@ -24,10 +24,11 @@ import {StatusService} from "./services/status.service";
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},
-  {path: 'student/register-exam', component: ExamRegistrationComponent},
   {path: 'login', component: LoginComponent},
-  {path: 'admin/dashboard', component: AdminDashboardComponent},
+  {path: 'student/register-exam', component: ExamRegistrationComponent},
   {path: 'student/dashboard', component: StudentDashboardComponent},
+  {path: 'student/register-exam', component: ExamRegistrationComponent},
+  {path: 'admin/dashboard', component: AdminDashboardComponent},
   {path: 'admin/add-exam', component: AdminAddExamComponent, canActivate: []},
   {path: 'admin/add-user', component: AdminAddUserComponent, canActivate: []},
   {path: 'admin/add-current-status', component: AdminCurrentStatusComponent, canActivate: []},
