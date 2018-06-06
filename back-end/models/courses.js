@@ -17,6 +17,10 @@ const CourseSchema = mongoose.Schema({
     semester: {
         type: Number,
         required: true
+    },
+    credits:{
+        type: Number,
+        default: 2
     }
 });
 

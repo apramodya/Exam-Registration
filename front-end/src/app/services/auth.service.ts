@@ -11,6 +11,7 @@ export class AuthService {
   authToken: any;
   user: object;
   type: any;
+  id: String;
 
   constructor(private http: HttpClient) { }
 
@@ -38,6 +39,15 @@ export class AuthService {
     });
     return this.http.get('http://localhost:3000/users/profile', {headers: headers})
       .map(res => res);
+  };
+
+  updateUser(id, user): Observable<any>{
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+    });
+    this.id = id;
+    return this.http.put('http://localhost:3000/users/update/' + this.id, user, {headers: headers})
+      .map(data => data);
   };
 
   storeUserData(token, user, type) {

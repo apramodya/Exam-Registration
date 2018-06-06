@@ -27,6 +27,18 @@ const UserSchema = mongoose.Schema({
     },
     password: {
         type: String
+    },
+    current_level: {
+        type: Number,
+        default: 1
+    },
+    this_year: {
+        semester_1: [],
+        semester_2: []
+    },
+    last_year: {
+        semester_1: [],
+        semester_2: []
     }
 });
 
@@ -55,4 +67,16 @@ module.exports.comparePassword = function (candidatePassword, hash, callback) {
         if (err) throw err;
         callback(null, isMatch);
     })
+};
+
+module.exports.updateUser = function (id, user, callback) {
+    User.findOneAndUpdate(
+        {_id: id},
+        {
+            $set: {
+                name: user.name,
+                email: user.email
+            }
+        }, callback
+    );
 };

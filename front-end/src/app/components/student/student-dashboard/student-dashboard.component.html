@@ -4,42 +4,64 @@
       <div class="card">
         <div class="card-body">
           <h5 class="card-title">{{ user.name}}</h5>
-          <h6 class="card-subtitle mb-2 text-muted">Undergraduate - 3rd Year</h6>
+          <h6 class="card-subtitle mb-2 text-muted" *ngIf="user.type == 1">Undergraduate</h6>
+          <h6 class="card-subtitle mb-2 text-muted" *ngIf="user.type == 2">Postgraduate</h6>
           <h6 class="card-subtitle mb-2 text-muted">Computer Science</h6>
-          <br>
-          <ul class="list-group">
-            <li class="list-group-item">Email: {{ user.email}}</li>
-            <li class="list-group-item">Registration Number: {{ user.registration_number}}</li>
-            <li class="list-group-item">Index Number: {{ user.index_number}}</li>
-          </ul>
-          <br>
+          <hr>
+          <form (submit)="onUpdate();">
+            <div class="form-group">
+              <label>Full Name</label>
+              <input type="text" class="form-control" [(ngModel)]="name" name="name">
+            </div>
+            <div class="form-group">
+              <label>Email address</label>
+              <input type="email" class="form-control" [(ngModel)]="email" name="email">
+            </div>
+            <div class="form-group">
+              <label>Registration Number</label>
+              <input type="text" class="form-control" [(ngModel)]="registration_number" name="registration_number" disabled>
+            </div>
+            <div class="form-group">
+              <label>Index Number</label>
+              <input type="text" class="form-control" [(ngModel)]="index_number"
+                     name="index_number" disabled>
+            </div>
+            <input type="submit" class="btn btn-outline-dark" value="Update">
+          </form>
+          <hr>
           <a routerLink="/student/register-exam" class="btn btn-outline-dark btn-block">Register for Subjects</a><br>
-          <a href="#" class="btn btn-outline-dark btn-block">Download Timetable</a>
+          <a href="#" class="btn btn-outline-dark btn-block disabled">Download Timetable</a>
         </div>
       </div>
     </div>
-    <div class="col-md-8">
-      <p class="" *ngIf="courses">have</p>
-      <table class="table">
-        <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">Course Name</th>
-          <th scope="col">Course Code</th>
-          <th scope="col">Year</th>
-          <th scope="col">Semester</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr *ngFor="let course of courses; let i = index">
-          <th scope="row">{{ i+1}}</th>
-          <td>{{ course.course_name}}</td>
-          <td>{{ course.course_code}}</td>
-          <td>{{ course.year}}</td>
-          <td>{{ course.semester}}</td>
-        </tr>
-        </tbody>
-      </table>
+    <div *ngIf="!courses" class="col-md-8">
+      <div class="jumbotron">
+        <h3 class="text-center">No Courses to show</h3>
+      </div>
+    </div>
+    <div *ngIf="courses" class="col-md-8">
+      <div class="card">
+        <table class="table">
+          <thead>
+          <tr class="text-center">
+            <th scope="col">#</th>
+            <th scope="col">Course Name</th>
+            <th scope="col">Course Code</th>
+            <th scope="col">Year</th>
+            <th scope="col">Semester</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let course of courses; let i = index">
+            <th scope="row">{{ i+1}}</th>
+            <td class="text-capitalize">{{ course.course_name}}</td>
+            <td class="text-center text-uppercase">{{ course.course_code}}</td>
+            <td class="text-center">{{ course.year}}</td>
+            <td class="text-center">{{ course.semester}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </div>
