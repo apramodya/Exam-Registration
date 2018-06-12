@@ -32,14 +32,13 @@ const UserSchema = mongoose.Schema({
         type: Number,
         default: 1
     },
-    this_year: {
-        semester_1: [],
-        semester_2: []
+    semester_1: {
+        type: {}
     },
-    last_year: {
-        semester_1: [],
-        semester_2: []
-    }
+    semester_2: {
+        type: {}
+    },
+
 });
 
 const User = module.exports = mongoose.model('User', UserSchema);
@@ -76,6 +75,18 @@ module.exports.updateUser = function (id, user, callback) {
             $set: {
                 name: user.name,
                 email: user.email
+            }
+        }, callback
+    );
+};
+
+module.exports.addExam = function (id, exam, callback) {
+    User.findOneAndUpdate(
+        {_id: id},
+        {
+            $set: {
+                semester_1: exam.semester_1,
+                semester_2: exam.semester_2
             }
         }, callback
     );

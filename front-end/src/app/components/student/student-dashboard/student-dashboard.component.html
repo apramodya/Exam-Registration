@@ -3,9 +3,9 @@
     <div class="col-md-4">
       <div class="card">
         <div class="card-body">
-          <h5 class="card-title">{{ user.name}}</h5>
-          <h6 class="card-subtitle mb-2 text-muted" *ngIf="user.type == 1">Undergraduate</h6>
-          <h6 class="card-subtitle mb-2 text-muted" *ngIf="user.type == 2">Postgraduate</h6>
+          <h5 class="card-title">{{ name}}</h5>
+          <h6 class="card-subtitle mb-2 text-muted" *ngIf="type == 1">Undergraduate</h6>
+          <h6 class="card-subtitle mb-2 text-muted" *ngIf="type == 2">Postgraduate</h6>
           <h6 class="card-subtitle mb-2 text-muted">Computer Science</h6>
           <hr>
           <form (submit)="onUpdate();">
@@ -19,7 +19,8 @@
             </div>
             <div class="form-group">
               <label>Registration Number</label>
-              <input type="text" class="form-control" [(ngModel)]="registration_number" name="registration_number" disabled>
+              <input type="text" class="form-control" [(ngModel)]="registration_number" name="registration_number"
+                     disabled>
             </div>
             <div class="form-group">
               <label>Index Number</label>
@@ -34,12 +35,12 @@
         </div>
       </div>
     </div>
-    <div *ngIf="!courses" class="col-md-8">
+    <div *ngIf="!semester_1" class="col-md-8">
       <div class="jumbotron">
         <h3 class="text-center">No Courses to show</h3>
       </div>
     </div>
-    <div *ngIf="courses" class="col-md-8">
+    <div *ngIf="semester_1" class="col-md-8">
       <div class="card">
         <table class="table">
           <thead>
@@ -47,17 +48,13 @@
             <th scope="col">#</th>
             <th scope="col">Course Name</th>
             <th scope="col">Course Code</th>
-            <th scope="col">Year</th>
-            <th scope="col">Semester</th>
           </tr>
           </thead>
           <tbody>
-          <tr *ngFor="let course of courses; let i = index">
+          <tr *ngFor="let course of semester_1;let i = index" class="text-center">
             <th scope="row">{{ i+1}}</th>
-            <td class="text-capitalize">{{ course.course_name}}</td>
-            <td class="text-center text-uppercase">{{ course.course_code}}</td>
-            <td class="text-center">{{ course.year}}</td>
-            <td class="text-center">{{ course.semester}}</td>
+            <td class="text-uppercase">{{ course.code}}</td>
+            <td class="text-uppercase">{{ course.subject}}</td>
           </tr>
           </tbody>
         </table>

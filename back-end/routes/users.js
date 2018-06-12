@@ -29,7 +29,8 @@ router.post('/authenticate', (req, res, next) => {
         if (err) throw err;
         if (!user) {
             return res.json({success: false, msg: 'Failed to find user'})
-        };
+        }
+        ;
         User.comparePassword(password, user.password, function (err, isMatch) {
             if (err) throw err;
             if (isMatch) {
@@ -46,7 +47,10 @@ router.post('/authenticate', (req, res, next) => {
                         email: user.email,
                         index_number: user.index_number,
                         registration_number: user.registration_number,
-                        type: user.type
+                        type: user.type,
+                        current_level: user.current_level,
+                        semester_1: user.semester_1,
+                        semester_2: user.semester_2
                     }
                 })
             }
@@ -62,16 +66,28 @@ router.get('/profile', passport.authenticate('jwt', {session: false}), (req, res
     res.json({user: req.user});
 });
 
-// update
+// update user
 router.put('/update/:id', function (req, res, next) {
-   let user = new User({
-       name: req.body.name,
-       email: req.body.email
-   });
-   User.updateUser(req.params.id, user, function (err, user) {
-       if (err) return res.json({success: false, msg: 'Failed to update user'});
-       else return res.json({success: true, msg: 'Updated info', user: user});
-   });
+    let user = new User({
+        name: req.body.name,
+        email: req.body.email
+    });
+    User.updateUser(req.params.id, user, function (err, user) {
+        if (err) return res.json({success: false, msg: 'Failed to update user'});
+        else return res.json({success: true, msg: 'Updated info', user: user});
+    });
+});
+
+// update exam
+router.put('/update/exam/:id', function (req, res, next) {
+    let exam = {
+        semester_1: req.body.semester_1,
+        semester_2: req.body.semester_2
+    };
+    User.addExam(req.params.id, exam, function (err, user) {
+        if (err) return res.json({success: false, msg: 'Failed to update exam'});
+        else return res.json({success: true, msg: 'Updated exam info', user: user});
+    });
 });
 
 module.exports = router;

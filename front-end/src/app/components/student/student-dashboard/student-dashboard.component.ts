@@ -3,6 +3,7 @@ import {AuthService} from "../../../services/auth.service";
 import {Router} from "@angular/router";
 import {CourseService} from "../../../services/course.service";
 import {FlashMessagesService} from "angular2-flash-messages";
+import {p} from "@angular/core/src/render3";
 
 @Component({
   selector: 'app-student-dashboard',
@@ -12,13 +13,14 @@ import {FlashMessagesService} from "angular2-flash-messages";
 export class StudentDashboardComponent implements OnInit {
 
   user: any;
-  courses: object;
-  // user details
   id: string;
   name: string;
   email: string;
+  type: number;
   registration_number: string;
   index_number: number;
+  semester_1: any;
+  semester_2: {};
 
   constructor(public authService: AuthService, private router: Router, private courseService: CourseService, private flashMessages: FlashMessagesService) {
   }
@@ -26,28 +28,23 @@ export class StudentDashboardComponent implements OnInit {
   ngOnInit() {
     // get user details
     this.authService.getProfile().subscribe(profile => {
-        //console.log(profile.user);
         this.id = profile.user._id;
         this.user = profile.user;
         this.name = profile.user.name;
         this.email = profile.user.email;
+        this.type = profile.user.type;
         this.registration_number = profile.user.registration_number;
         this.index_number = profile.user.index_number;
-      },
-      error1 => {
-        console.log(error1);
-        return false;
-      });
+        this.semester_1 = profile.user.semester_1;
+        this.semester_2 = profile.user.semester_2;
+        console.log(this.semester_1);
 
-    // get course details
-    this.courseService.getCourses().subscribe(courses => {
-        this.courses = courses;
       },
       error1 => {
         console.log(error1);
         return false;
       });
-  }
+    }
 
   onUpdate() {
     let user = {
