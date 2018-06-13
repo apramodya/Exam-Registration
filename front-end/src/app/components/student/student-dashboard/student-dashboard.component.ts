@@ -3,7 +3,6 @@ import {AuthService} from "../../../services/auth.service";
 import {Router} from "@angular/router";
 import {CourseService} from "../../../services/course.service";
 import {FlashMessagesService} from "angular2-flash-messages";
-import {p} from "@angular/core/src/render3";
 
 @Component({
   selector: 'app-student-dashboard',
@@ -37,14 +36,14 @@ export class StudentDashboardComponent implements OnInit {
         this.index_number = profile.user.index_number;
         this.semester_1 = profile.user.semester_1;
         this.semester_2 = profile.user.semester_2;
-        console.log(this.semester_1);
+        console.log(this.user);
 
       },
       error1 => {
         console.log(error1);
         return false;
       });
-    }
+  }
 
   onUpdate() {
     let user = {
