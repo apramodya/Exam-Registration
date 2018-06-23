@@ -3,6 +3,7 @@ import { CourseService } from '../../../services/course.service';
 import { AuthService } from '../../../services/auth.service';
 import { Router } from '@angular/router';
 import { FlashMessagesService } from 'angular2-flash-messages';
+import { StatusService } from '../../../services/status.service';
 
 @Component({
   selector: 'app-exam-registration',
@@ -11,9 +12,11 @@ import { FlashMessagesService } from 'angular2-flash-messages';
 })
 export class ExamRegistrationComponent implements OnInit {
 
+  year: number;
   id: number;
   user: any;
   courses: any;
+  isAccepting;
   checkedCodeList = [];
   checkedNameList = [];
   c = [];
@@ -21,29 +24,35 @@ export class ExamRegistrationComponent implements OnInit {
   constructor(
     private courseService: CourseService,
     private authService: AuthService,
+    private statusService: StatusService,
     private router: Router,
     private flashMessages: FlashMessagesService) {
-  }
-
-  ngOnInit() {
-    // get courses
-    this.courseService.getCourses().subscribe(courses => {
-      this.courses = courses;
-    },
-      error1 => {
-        console.log(error1);
-        return false;
-      });
 
     // get user details
     this.authService.getProfile().subscribe(profile => {
       this.id = profile.user._id;
       this.user = profile.user;
+      this.year = profile.user.current_level;
     },
       error1 => {
         console.log(error1);
         return false;
       });
+
+      // get courses
+      this.courseService.getCoursesBySemesterAndYear(this.year).subscribe(courses => {
+        this.courses = courses;
+      },
+        error1 => {
+          console.log(error1);
+          return false;
+        });
+  }
+
+  ngOnInit() {
+    // get status
+    this.isAccepting = this.statusService.isAccepting();
+    console.log(this.isAccepting);
   }
 
   check(code, name) {
@@ -78,10 +87,10 @@ export class ExamRegistrationComponent implements OnInit {
       if (data.success) {
         console.log(data);
         this.flashMessages.show(data.msg, { cssClass: 'alert-success', timeout: 3000 });
-        // this.router.navigate(['/student/dashboard']);
+        this.router.navigate(['/student/dashboard']);
       } else {
         this.flashMessages.show(data.msg, { cssClass: 'alert-danger', timeout: 3000 });
-        // this.router.navigate(['/student/dashboard']);
+        this.router.navigate(['/student/dashboard']);
         console.log(data);
       }
     });

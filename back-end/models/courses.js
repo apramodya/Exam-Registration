@@ -18,7 +18,7 @@ const CourseSchema = mongoose.Schema({
         type: Number,
         required: true
     },
-    credits:{
+    credits: {
         type: Number,
         default: 2
     }
@@ -31,13 +31,21 @@ module.exports.addCourse = function (course, callback) {
 };
 
 module.exports.getCourseByCourseCode = function (course_code, callback) {
-    Course.findOne({ 'course_code' : course_code}, callback);
+    Course.findOne({ 'course_code': course_code }, callback);
 };
 
 module.exports.getCoursesByYear = function (year, callback) {
-    Course.find({ 'year' : year}, callback);
+    Course.find({ 'year': year }, callback);
 };
 
 module.exports.getCoursesBySemester = function (semester, callback) {
-    Course.find({ 'semester' : semester}, callback);
+    Course.find({ 'semester': semester }, callback);
+};
+
+module.exports.getCourses = function (callback) {
+    Course.find( callback);
+}
+
+module.exports.getCoursesBySemesterAndYear = function (semester, year, callback) {
+    Course.find({ 'semester': semester, 'year': year }, callback);
 };

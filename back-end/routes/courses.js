@@ -52,4 +52,22 @@ router.get('/getCoursesBySemester/:semester', function (req, res, next) {
     })
 });
 
+// get all courses 
+router.get('/getCourses', function (req, res) {
+    Course.getCourses( function (err, courses) {
+        if (err) return res.json({success: false, msg: 'Failed to find courses'});
+        else return res.json(courses);
+    })
+});
+
+// get all courses 
+router.get('/getCoursesBySemesterAndYear/:semester/:year', function (req, res) {
+    let semester = req.params.semester;
+    let year = req.params.year;
+    Course.getCoursesBySemesterAndYear(semester, year, function (err, courses) {
+        if (err) return res.json({success: false, msg: 'Failed to find courses'});
+        else return res.json(courses);
+    })
+})
+
 module.exports = router;

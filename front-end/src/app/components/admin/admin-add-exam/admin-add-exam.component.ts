@@ -21,10 +21,7 @@ export class AdminAddExamComponent implements OnInit {
     private courseService: CourseService,
     private router: Router,
     private flashMessages: FlashMessagesService,
-    private validateService: ValidateService) { }
-
-
-  ngOnInit() {
+    private validateService: ValidateService) {
     this.courseService.getCourses().subscribe(courses => {
       this.courses = courses;
     },
@@ -32,6 +29,10 @@ export class AdminAddExamComponent implements OnInit {
         console.log(error1);
         return false;
       });
+  }
+
+
+  ngOnInit() {
   }
 
   onSubmit() {
