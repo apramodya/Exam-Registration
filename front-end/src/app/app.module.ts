@@ -8,18 +8,18 @@ import {LoginComponent} from './components/login/login.component';
 import {ExamRegistrationComponent} from './components/student/exam-registration/exam-registration.component';
 import {AdminDashboardComponent} from './components/admin/admin-dashboard/admin-dashboard.component';
 import {StudentDashboardComponent} from './components/student/student-dashboard/student-dashboard.component';
-import {RouterModule, Routes} from "@angular/router";
-import {FormsModule} from "@angular/forms";
+import {RouterModule, Routes} from '@angular/router';
+import {FormsModule} from '@angular/forms';
 import {AdminSidebarComponent} from './components/admin/admin-sidebar/admin-sidebar.component';
 import {AdminAddExamComponent} from './components/admin/admin-add-exam/admin-add-exam.component';
 import {AdminAddUserComponent} from './components/admin/admin-add-user/admin-add-user.component';
 import {AdminCurrentStatusComponent} from './components/admin/admin-current-status/admin-current-status.component';
-import {FlashMessagesModule, FlashMessagesService} from "angular2-flash-messages";
-import {HttpClientModule} from "@angular/common/http";
-import {AuthService} from "./services/auth.service";
-import {ValidateService} from "./services/validate.service";
-import {CourseService} from "./services/course.service";
-import {StatusService} from "./services/status.service";
+import {FlashMessagesModule, FlashMessagesService} from 'angular2-flash-messages';
+import {HttpClientModule} from '@angular/common/http';
+import {AuthService} from './services/auth.service';
+import {ValidateService} from './services/validate.service';
+import {CourseService} from './services/course.service';
+import {StatusService} from './services/status.service';
 
 
 const appRoutes: Routes = [

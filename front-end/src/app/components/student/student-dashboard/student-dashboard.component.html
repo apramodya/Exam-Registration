@@ -44,17 +44,17 @@
       <div class="card">
         <table class="table">
           <thead>
-          <tr class="text-center">
-            <th scope="col">#</th>
+          <tr>
+            <th class="text-center" scope="col">#</th>
             <th scope="col">Course Name</th>
-            <th scope="col">Course Code</th>
+            <th class="text-center" scope="col">Course Code</th>
           </tr>
           </thead>
           <tbody>
-          <tr *ngFor="let course of semester_1;let i = index" class="text-center">
-            <th scope="row">{{ i+1}}</th>
+          <tr *ngFor="let course of semester_1;let i = index">
+            <th class="text-center" scope="row">{{ i+1}}</th>
             <td class="text-uppercase">{{ course.subject}}</td>
-            <td class="text-uppercase">{{ course.code}}</td>
+            <td class="text-uppercase text-center">{{ course.code}}</td>
           </tr>
           </tbody>
         </table>

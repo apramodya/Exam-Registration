@@ -1,8 +1,8 @@
-import {Component, OnInit} from '@angular/core';
-import {CourseService} from '../../../services/course.service';
-import {AuthService} from '../../../services/auth.service';
-import {Router} from '@angular/router';
-import {FlashMessagesService} from 'angular2-flash-messages';
+import { Component, OnInit } from '@angular/core';
+import { CourseService } from '../../../services/course.service';
+import { AuthService } from '../../../services/auth.service';
+import { Router } from '@angular/router';
+import { FlashMessagesService } from 'angular2-flash-messages';
 
 @Component({
   selector: 'app-exam-registration',
@@ -18,14 +18,18 @@ export class ExamRegistrationComponent implements OnInit {
   checkedNameList = [];
   c = [];
 
-  constructor(private courseService: CourseService, private authService: AuthService, private router: Router, private flashMessages: FlashMessagesService) {
+  constructor(
+    private courseService: CourseService,
+    private authService: AuthService,
+    private router: Router,
+    private flashMessages: FlashMessagesService) {
   }
 
   ngOnInit() {
     // get courses
     this.courseService.getCourses().subscribe(courses => {
-        this.courses = courses;
-      },
+      this.courses = courses;
+    },
       error1 => {
         console.log(error1);
         return false;
@@ -33,11 +37,9 @@ export class ExamRegistrationComponent implements OnInit {
 
     // get user details
     this.authService.getProfile().subscribe(profile => {
-        this.id = profile.user._id;
-        this.user = profile.user;
-        // console.log(this.id);
-
-      },
+      this.id = profile.user._id;
+      this.user = profile.user;
+    },
       error1 => {
         console.log(error1);
         return false;
@@ -64,23 +66,21 @@ export class ExamRegistrationComponent implements OnInit {
 
   onConfirm() {
     for (let i = 0; i < this.checkedCodeList.length; i++) {
-      this.c[this.c.length] = {'code': this.checkedCodeList[i], 'subject': this.checkedNameList[i]};
+      this.c[this.c.length] = { 'code': this.checkedCodeList[i], 'subject': this.checkedNameList[i] };
     }
-    // console.log(this.c);
-
-    let exam = {
+    const exam = {
       semester_1: this.c,
       semester_2: this.c
     };
-    console.log(exam);
+    // console.log(exam);
 
     this.authService.updateExam(this.id, exam).subscribe(data => {
       if (data.success) {
         console.log(data);
-        this.flashMessages.show(data.msg, {cssClass: 'alert-success', timeout: 3000});
+        this.flashMessages.show(data.msg, { cssClass: 'alert-success', timeout: 3000 });
         // this.router.navigate(['/student/dashboard']);
       } else {
-        this.flashMessages.show(data.msg, {cssClass: 'alert-danger', timeout: 3000});
+        this.flashMessages.show(data.msg, { cssClass: 'alert-danger', timeout: 3000 });
         // this.router.navigate(['/student/dashboard']);
         console.log(data);
       }

@@ -55,7 +55,7 @@ export class AuthService {
       'Content-Type': 'application/json',
     });
     this.id = id;
-    return this.http.put('http://localhost:3000/users/update/exam' + this.id, exam, { headers: headers })
+    return this.http.put('http://localhost:3000/users/update/exam/' + this.id, exam, { headers: headers })
       .map(data => data);
   }
 
@@ -89,21 +89,21 @@ export class AuthService {
 
   isUndergraduate() {
     this.loadType();
-    if (this.type === 1) {
+    if (this.type == 1) {
       return true;
     }
   }
 
   isPostgraduate() {
     this.loadType();
-    if (this.type === 2) {
+    if (this.type == 2) {
       return true;
     }
   }
 
   isAdmin() {
     this.loadType();
-    if (this.type === 3) {
+    if (this.type == 3) {
       return true;
     }
   }
