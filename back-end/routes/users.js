@@ -84,6 +84,18 @@ router.put('/update/exam/:id', function (req, res, next) {
         semester_1: req.body.semester_1,
         semester_2: req.body.semester_2
     };
+    // let exam = {
+    //     "semester_1":[
+    //         {
+    //             "code":"scs1001",
+    //             "subject":"programming 123"
+    //         },
+    //         {
+    //             "code":"scs1002",
+    //             "subject":"networking"
+    //         }
+    //     ]
+    // };
     User.addExam(req.params.id, exam, function (err, user) {
         if (err) return res.json({success: false, msg: 'Failed to update exam'});
         else return res.json({success: true, msg: 'Updated exam info', user: user});

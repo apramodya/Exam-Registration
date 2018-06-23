@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-md-6 offset-3">
         <h2 class="text-center" style="margin: 20px">Exam Registration</h2>
-        <form class="jumbotron"  (submit)="onUpdate();">
+        <form class="jumbotron" (submit)="onConfirm();">
           <div *ngFor="let course of courses; let i = index" class="">
             <div class="form-check">
               <label class="custom-control overflow-checkbox">

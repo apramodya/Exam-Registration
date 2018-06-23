@@ -74,7 +74,7 @@ module.exports.updateUser = function (id, user, callback) {
         {
             $set: {
                 name: user.name,
-                email: user.email
+                email: user.email,
             }
         }, callback
     );

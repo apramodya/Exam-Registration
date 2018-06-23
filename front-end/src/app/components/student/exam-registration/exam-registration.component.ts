@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {CourseService} from "../../../services/course.service";
-import {AuthService} from "../../../services/auth.service";
-import {Router} from "@angular/router";
-import {FlashMessagesService} from "angular2-flash-messages";
+import {CourseService} from '../../../services/course.service';
+import {AuthService} from '../../../services/auth.service';
+import {Router} from '@angular/router';
+import {FlashMessagesService} from 'angular2-flash-messages';
 
 @Component({
   selector: 'app-exam-registration',
@@ -31,12 +31,17 @@ export class ExamRegistrationComponent implements OnInit {
         return false;
       });
 
-    // get profile
+    // get user details
     this.authService.getProfile().subscribe(profile => {
-      this.id = profile.user._id;
-      this.user = profile;
-    });
-    console.log(this.id);
+        this.id = profile.user._id;
+        this.user = profile.user;
+        // console.log(this.id);
+
+      },
+      error1 => {
+        console.log(error1);
+        return false;
+      });
   }
 
   check(code, name) {
@@ -49,8 +54,7 @@ export class ExamRegistrationComponent implements OnInit {
       });
       // console.log(this.checkedNameList);
       // console.log(this.checkedCodeList);
-    }
-    else if (!this.checkedCodeList.includes(code)) {
+    } else if (!this.checkedCodeList.includes(code)) {
       this.checkedNameList.push(name);
       this.checkedCodeList.push(code);
       // console.log(this.checkedCodeList);
@@ -58,24 +62,27 @@ export class ExamRegistrationComponent implements OnInit {
     }
   }
 
-  onUpdate() {
+  onConfirm() {
     for (let i = 0; i < this.checkedCodeList.length; i++) {
-      this.c[this.c.length] = {code: this.checkedCodeList[i], subject: this.checkedNameList[i]};
+      this.c[this.c.length] = {'code': this.checkedCodeList[i], 'subject': this.checkedNameList[i]};
     }
     // console.log(this.c);
 
-    let user = {
-      semester_1: this.c
+    let exam = {
+      semester_1: this.c,
+      semester_2: this.c
     };
-    console.log(user);
-    this.authService.updateUser(this.id, user).subscribe(data => {
+    console.log(exam);
+
+    this.authService.updateExam(this.id, exam).subscribe(data => {
       if (data.success) {
-        //this.flashMessages.show(data.msg, {cssClass: 'alert-success', timeout: 3000});
-        //this.router.navigate(['/student/dashboard']);
-      }
-      else {
+        console.log(data);
+        this.flashMessages.show(data.msg, {cssClass: 'alert-success', timeout: 3000});
+        // this.router.navigate(['/student/dashboard']);
+      } else {
         this.flashMessages.show(data.msg, {cssClass: 'alert-danger', timeout: 3000});
-        this.router.navigate(['/student/dashboard']);
+        // this.router.navigate(['/student/dashboard']);
+        console.log(data);
       }
     });
   }

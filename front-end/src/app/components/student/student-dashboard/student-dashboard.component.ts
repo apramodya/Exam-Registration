@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {AuthService} from "../../../services/auth.service";
-import {Router} from "@angular/router";
-import {CourseService} from "../../../services/course.service";
-import {FlashMessagesService} from "angular2-flash-messages";
+import {AuthService} from '../../../services/auth.service';
+import {Router} from '@angular/router';
+import {CourseService} from '../../../services/course.service';
+import {FlashMessagesService} from 'angular2-flash-messages';
 
 @Component({
   selector: 'app-student-dashboard',
@@ -36,7 +36,7 @@ export class StudentDashboardComponent implements OnInit {
         this.index_number = profile.user.index_number;
         this.semester_1 = profile.user.semester_1;
         this.semester_2 = profile.user.semester_2;
-        console.log(this.user);
+        // console.log(this.user);
 
       },
       error1 => {
@@ -54,8 +54,7 @@ export class StudentDashboardComponent implements OnInit {
       if (data.success) {
         this.flashMessages.show(data.msg, {cssClass: 'alert-success', timeout: 3000});
         this.router.navigate(['/student/dashboard']);
-      }
-      else {
+      } else {
         this.flashMessages.show(data.msg, {cssClass: 'alert-danger', timeout: 3000});
         this.router.navigate(['/student/dashboard']);
       }
