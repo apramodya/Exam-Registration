@@ -21,15 +21,20 @@ import {ValidateService} from './services/validate.service';
 import {CourseService} from './services/course.service';
 import {StatusService} from './services/status.service';
 import { RepeatExamRegistrationComponent } from './components/student/repeat-exam-registration/repeat-exam-registration.component';
+import { PostgraduateExamRegistrationComponent } from './components/postgraduate/postgraduate-exam-registration/postgraduate-exam-registration.component';
+import { PostgraduateRepeatExamRegistrationComponent } from './components/postgraduate/postgraduate-repeat-exam-registration/postgraduate-repeat-exam-registration.component';
+import { PostgraduateDashboardComponent } from './components/postgraduate/postgraduate-dashboard/postgraduate-dashboard.component';
 
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'login', component: LoginComponent},
-  {path: 'student/register-exam', component: ExamRegistrationComponent},
   {path: 'student/dashboard', component: StudentDashboardComponent},
   {path: 'student/register-exam', component: ExamRegistrationComponent},
   {path: 'student/repeat-register-exam', component: RepeatExamRegistrationComponent},
+  {path: 'postgraduate/dashboard', component: PostgraduateDashboardComponent},
+  {path: 'postgraduate/register-exam', component: PostgraduateExamRegistrationComponent},
+  {path: 'postgraduate/repeat-register-exam', component: PostgraduateRepeatExamRegistrationComponent},
   {path: 'admin/dashboard', component: AdminDashboardComponent},
   {path: 'admin/add-exam', component: AdminAddExamComponent, canActivate: []},
   {path: 'admin/add-user', component: AdminAddUserComponent, canActivate: []},
@@ -50,6 +55,9 @@ const appRoutes: Routes = [
     AdminAddUserComponent,
     AdminCurrentStatusComponent,
     RepeatExamRegistrationComponent,
+    PostgraduateExamRegistrationComponent,
+    PostgraduateRepeatExamRegistrationComponent,
+    PostgraduateDashboardComponent,
   ],
   imports: [
     BrowserModule,

@@ -13,6 +13,8 @@
                               routerLink="admin/dashboard">Dashboard</a></li>
       <li class="nav-item"><a *ngIf="authService.isUndergraduate()" class="nav-link" routerLinkActive="active"
                               routerLink="student/dashboard">Dashboard</a></li>
+      <li class="nav-item"><a *ngIf="authService.isPostgraduate()" class="nav-link" routerLinkActive="active"
+                              routerLink="postgraduate/dashboard">Dashboard</a></li>
     </ul>
     <ul class="navbar-nav ml-auto">
       <li class="nav-item"><a class="nav-link" *ngIf="authService.loggedIn()" href="#"
