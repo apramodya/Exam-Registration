@@ -1,3 +1,105 @@
-<p>
-  postgraduate-dashboard works!
-</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">{{ name}}</h5>
+          <h6 class="card-subtitle mb-2 text-muted" *ngIf="type == 1">Undergraduate</h6>
+          <h6 class="card-subtitle mb-2 text-muted" *ngIf="type == 2">Postgraduate</h6>
+          <h6 class="card-subtitle mb-2 text-muted">Computer Science</h6>
+          <hr>
+          <form (submit)="onUpdate();">
+            <div class="form-group">
+              <label>Full Name</label>
+              <input type="text" class="form-control" [(ngModel)]="name" name="name">
+            </div>
+            <div class="form-group">
+              <label>Email address</label>
+              <input type="email" class="form-control" [(ngModel)]="email" name="email">
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Registration Number</label>
+                  <input type="text" class="form-control" [(ngModel)]="registration_number" name="registration_number"
+                         disabled>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Index Number</label>
+                  <input type="text" class="form-control" [(ngModel)]="index_number"
+                         name="index_number" disabled>
+                </div>
+              </div>
+            </div>
+            <input type="submit" class="btn btn-outline-dark" value="Update">
+          </form>
+          <hr>
+          <a routerLink="/postgraduate/register-exam" class="btn btn-outline-dark btn-block">Register for Subjects</a><br>
+          <a routerLink="/postgraduate/repeat-register-exam" class="btn btn-outline-dark btn-block">Register for Repeat
+            Subjects</a><br>
+          <a href="#" class="btn btn-outline-dark btn-block disabled">Download Timetable</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-8">
+      <div class="">
+        <h3 class="text-center">Registered Exam Courses</h3>
+        <div *ngIf="!courses" class="col-md-12">
+          <div class="jumbotron">
+            <h3 class="text-center">No Courses to show</h3>
+          </div>
+        </div>
+        <div *ngIf="courses" class="col-md-12">
+          <div class="card">
+            <table class="table">
+              <thead>
+              <tr>
+                <th class="text-center" scope="col">#</th>
+                <th scope="col">Course Name</th>
+                <th class="text-center" scope="col">Course Code</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let course of courses;let i = index">
+                <th class="text-center" scope="row">{{ i+1}}</th>
+                <td class="text-uppercase">{{ course.subject}}</td>
+                <td class="text-uppercase text-center">{{ course.code}}</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="repeat">
+        <h3 class="text-center">Registered Repeat Exam Courses</h3>
+        <div *ngIf="!repeat_courses" class="col-md-12">
+          <div class="jumbotron">
+            <h3 class="text-center">No Courses to show</h3>
+          </div>
+        </div>
+        <div *ngIf="repeat_courses" class="col-md-12">
+          <div class="card">
+            <table class="table">
+              <thead>
+              <tr>
+                <th class="text-center" scope="col">#</th>
+                <th scope="col">Course Name</th>
+                <th class="text-center" scope="col">Course Code</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let course of repeat_courses;let i = index">
+                <th class="text-center" scope="row">{{ i+1}}</th>
+                <td class="text-uppercase">{{ course.subject}}</td>
+                <td class="text-uppercase text-center">{{ course.code}}</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

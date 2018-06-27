@@ -1,3 +1,25 @@
-<p>
-  postgraduate-exam-registration works!
-</p>
+<div class="container">
+  <div class="card">
+    <div class="row">
+      <div class="col-md-6 offset-3">
+        <h2 class="text-center" style="margin: 20px">Exam Registration</h2>
+        <form class="jumbotron" (submit)="onConfirm();">
+          <div *ngFor="let course of courses; let i = index" class="">
+            <div class="form-check">
+              <label class="custom-control overflow-checkbox">
+                <input type="checkbox" class="overflow-control-input" value="{{ course.course_code }}"
+                       (click)="check(course.course_code, course.course_name)">
+                <span class="overflow-control-indicator"></span>
+                <span class="overflow-control-description text-capitalize">{{ course.course_name }} | <span
+                  class="text-uppercase">{{ course.course_code}}</span> </span>
+              </label>
+            </div>
+          </div>
+          <div class="float-right">
+            <input type="submit" class="btn btn-outline-dark" value="Confirm">
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
