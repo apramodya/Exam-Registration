@@ -20,6 +20,7 @@ import {AuthService} from './services/auth.service';
 import {ValidateService} from './services/validate.service';
 import {CourseService} from './services/course.service';
 import {StatusService} from './services/status.service';
+import { RepeatExamRegistrationComponent } from './components/student/repeat-exam-registration/repeat-exam-registration.component';
 
 
 const appRoutes: Routes = [
@@ -28,6 +29,7 @@ const appRoutes: Routes = [
   {path: 'student/register-exam', component: ExamRegistrationComponent},
   {path: 'student/dashboard', component: StudentDashboardComponent},
   {path: 'student/register-exam', component: ExamRegistrationComponent},
+  {path: 'student/repeat-register-exam', component: RepeatExamRegistrationComponent},
   {path: 'admin/dashboard', component: AdminDashboardComponent},
   {path: 'admin/add-exam', component: AdminAddExamComponent, canActivate: []},
   {path: 'admin/add-user', component: AdminAddUserComponent, canActivate: []},
@@ -47,6 +49,7 @@ const appRoutes: Routes = [
     AdminAddExamComponent,
     AdminAddUserComponent,
     AdminCurrentStatusComponent,
+    RepeatExamRegistrationComponent,
   ],
   imports: [
     BrowserModule,

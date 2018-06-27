@@ -49,8 +49,8 @@ router.post('/authenticate', (req, res, next) => {
                         registration_number: user.registration_number,
                         type: user.type,
                         current_level: user.current_level,
-                        semester_1: user.semester_1,
-                        semester_2: user.semester_2
+                        courses: user.courses,
+                        repeat_courses: user.repeat_courses
                     }
                 })
             }
@@ -81,12 +81,22 @@ router.put('/update/:id', function (req, res, next) {
 // update exam
 router.put('/update/exam/:id', function (req, res, next) {
     let exam = {
-        semester_1: req.body.semester_1,
-        semester_2: req.body.semester_2
+        courses: req.body.courses,
     };
     User.addExam(req.params.id, exam, function (err, user) {
-        if (err) return res.json({success: false, msg: 'Failed to update exam'});
+        if (err) return res.json({success: false, msg: 'Failed to update exams'});
         else return res.json({success: true, msg: 'Updated exam info', user: user});
+    });
+});
+
+// update repeat exam
+router.put('/update/repeat-exam/:id', function (req, res, next) {
+    let exam = {
+        repeat_courses: req.body.repeat_courses,
+    };
+    User.addRepeatExam(req.params.id, exam, function (err, user) {
+        if (err) return res.json({success: false, msg: 'Failed to update repeat exams'});
+        else return res.json({success: true, msg: 'Updated repeat exam info', user: user});
     });
 });
 

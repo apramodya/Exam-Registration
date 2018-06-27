@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import 'rxjs/add/operator/map';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
-import { tokenNotExpired } from 'angular2-jwt';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {Observable} from 'rxjs/Observable';
+import {tokenNotExpired} from 'angular2-jwt';
 
 @Injectable()
 export class AuthService {
@@ -19,7 +19,7 @@ export class AuthService {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
     });
-    return this.http.post('http://localhost:3000/users/register', user, { headers: headers })
+    return this.http.post('http://localhost:3000/users/register', user, {headers: headers})
       .map(data => data);
   }
 
@@ -27,7 +27,7 @@ export class AuthService {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
     });
-    return this.http.post('http://localhost:3000/users/authenticate', user, { headers: headers })
+    return this.http.post('http://localhost:3000/users/authenticate', user, {headers: headers})
       .map(data => data);
   }
 
@@ -37,7 +37,7 @@ export class AuthService {
       'Content-Type': 'application/json',
       'Authorization': this.authToken
     });
-    return this.http.get('http://localhost:3000/users/profile', { headers: headers })
+    return this.http.get('http://localhost:3000/users/profile', {headers: headers})
       .map(res => res);
   }
 
@@ -46,7 +46,7 @@ export class AuthService {
       'Content-Type': 'application/json',
     });
     this.id = id;
-    return this.http.put('http://localhost:3000/users/update/' + this.id, user, { headers: headers })
+    return this.http.put('http://localhost:3000/users/update/' + this.id, user, {headers: headers})
       .map(data => data);
   }
 
@@ -55,7 +55,16 @@ export class AuthService {
       'Content-Type': 'application/json',
     });
     this.id = id;
-    return this.http.put('http://localhost:3000/users/update/exam/' + this.id, exam, { headers: headers })
+    return this.http.put('http://localhost:3000/users/update/exam/' + this.id, exam, {headers: headers})
+      .map(data => data);
+  }
+
+  updateRepeatExam(id, exam): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+    });
+    this.id = id;
+    return this.http.put('http://localhost:3000/users/update/repeat-exam/' + this.id, exam, {headers: headers})
       .map(data => data);
   }
 

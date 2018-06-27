@@ -1,16 +1,16 @@
 import {Component, OnInit} from '@angular/core';
-import {CourseService} from '../../../services/course.service';
-import {AuthService} from '../../../services/auth.service';
-import {Router} from '@angular/router';
-import {FlashMessagesService} from 'angular2-flash-messages';
-import {StatusService} from '../../../services/status.service';
+import {AuthService} from "../../../services/auth.service";
+import {StatusService} from "../../../services/status.service";
+import {Router} from "@angular/router";
+import {CourseService} from "../../../services/course.service";
+import {FlashMessagesService} from "angular2-flash-messages";
 
 @Component({
-  selector: 'app-exam-registration',
-  templateUrl: './exam-registration.component.html',
-  styleUrls: ['./exam-registration.component.css']
+  selector: 'app-repeat-exam-registration',
+  templateUrl: './repeat-exam-registration.component.html',
+  styleUrls: ['./repeat-exam-registration.component.css']
 })
-export class ExamRegistrationComponent implements OnInit {
+export class RepeatExamRegistrationComponent implements OnInit {
 
   year: number;
   id: number;
@@ -26,8 +26,8 @@ export class ExamRegistrationComponent implements OnInit {
     private authService: AuthService,
     private statusService: StatusService,
     private router: Router,
-    private flashMessages: FlashMessagesService) {
-
+    private flashMessages: FlashMessagesService
+  ) {
     // get user details
     this.authService.getProfile().subscribe(profile => {
         this.id = profile.user._id;
@@ -40,7 +40,7 @@ export class ExamRegistrationComponent implements OnInit {
       });
 
     // get courses
-    this.courseService.getCoursesBySemesterAndYear(this.year).subscribe(courses => {
+    this.courseService.getCourses().subscribe(courses => {
         this.courses = courses;
       },
       error1 => {
@@ -52,7 +52,7 @@ export class ExamRegistrationComponent implements OnInit {
   ngOnInit() {
     // get status
     this.isAccepting = this.statusService.isAccepting();
-    console.log(this.isAccepting);
+    // console.log(this.isAccepting);
   }
 
   check(code, name) {
@@ -78,11 +78,11 @@ export class ExamRegistrationComponent implements OnInit {
       this.c[this.c.length] = {'code': this.checkedCodeList[i], 'subject': this.checkedNameList[i]};
     }
     const exam = {
-      courses: this.c,
+      repeat_courses: this.c,
     };
     // console.log(exam);
 
-    this.authService.updateExam(this.id, exam).subscribe(data => {
+    this.authService.updateRepeatExam(this.id, exam).subscribe(data => {
       if (data.success) {
         console.log(data);
         this.flashMessages.show(data.msg, {cssClass: 'alert-success', timeout: 3000});
@@ -94,4 +94,5 @@ export class ExamRegistrationComponent implements OnInit {
       }
     });
   }
+
 }

@@ -32,12 +32,12 @@ const UserSchema = mongoose.Schema({
         type: Number,
         default: 1
     },
-    semester_1: {
+    courses: {
         type: {}
     },
-    semester_2: {
+    repeat_courses: {
         type: {}
-    },
+    }
 
 });
 
@@ -85,8 +85,18 @@ module.exports.addExam = function (id, exam, callback) {
         { _id: id },
         {
             $set: {
-                semester_1: exam.semester_1,
-                semester_2: exam.semester_2
+                courses: exam.courses,
+            }
+        }, callback
+    );
+};
+
+module.exports.addRepeatExam = function (id, exam, callback) {
+    User.findOneAndUpdate(
+        { _id: id },
+        {
+            $set: {
+                repeat_courses: exam.repeat_courses,
             }
         }, callback
     );
