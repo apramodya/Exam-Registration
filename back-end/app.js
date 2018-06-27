@@ -8,7 +8,7 @@ let config = require('./config/database');
 const users = require('./routes/users');
 const courses = require('./routes/courses');
 const status = require('./routes/status');
-
+const modules = require('./routes/modules');
 // mongo db using mlab
 mongoose.connect(config.database);
 mongoose.connection.on('connected', function () {
@@ -31,6 +31,7 @@ require('./config/passport')(passport);
 
 app.use('/users', users);
 app.use('/courses', courses);
+app.use('/modules', modules);
 app.use('/status', status);
 
 //index route

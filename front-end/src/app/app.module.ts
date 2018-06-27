@@ -24,6 +24,8 @@ import { RepeatExamRegistrationComponent } from './components/student/repeat-exa
 import { PostgraduateExamRegistrationComponent } from './components/postgraduate/postgraduate-exam-registration/postgraduate-exam-registration.component';
 import { PostgraduateRepeatExamRegistrationComponent } from './components/postgraduate/postgraduate-repeat-exam-registration/postgraduate-repeat-exam-registration.component';
 import { PostgraduateDashboardComponent } from './components/postgraduate/postgraduate-dashboard/postgraduate-dashboard.component';
+import { AdminAddPostgraduateExamComponent } from './components/admin/admin-add-postgraduate-exam/admin-add-postgraduate-exam.component';
+import {ModuleService} from "./services/module.service";
 
 
 const appRoutes: Routes = [
@@ -37,6 +39,7 @@ const appRoutes: Routes = [
   {path: 'postgraduate/repeat-register-exam', component: PostgraduateRepeatExamRegistrationComponent},
   {path: 'admin/dashboard', component: AdminDashboardComponent},
   {path: 'admin/add-exam', component: AdminAddExamComponent, canActivate: []},
+  {path: 'admin/add-postgraduate-exam', component: AdminAddPostgraduateExamComponent, canActivate: []},
   {path: 'admin/add-user', component: AdminAddUserComponent, canActivate: []},
   {path: 'admin/add-current-status', component: AdminCurrentStatusComponent, canActivate: []},
 ];
@@ -58,6 +61,7 @@ const appRoutes: Routes = [
     PostgraduateExamRegistrationComponent,
     PostgraduateRepeatExamRegistrationComponent,
     PostgraduateDashboardComponent,
+    AdminAddPostgraduateExamComponent,
   ],
   imports: [
     BrowserModule,
@@ -66,7 +70,7 @@ const appRoutes: Routes = [
     FlashMessagesModule.forRoot(),
     HttpClientModule,
   ],
-  providers: [AuthService, ValidateService, FlashMessagesService, CourseService, StatusService],
+  providers: [AuthService, ValidateService, FlashMessagesService, CourseService, StatusService, ModuleService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

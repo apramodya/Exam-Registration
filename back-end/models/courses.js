@@ -1,3 +1,5 @@
+// undergraduate courses
+
 var mongoose = require('mongoose');
 
 // subject schema
@@ -44,7 +46,7 @@ module.exports.getCoursesBySemester = function (semester, callback) {
 
 module.exports.getCourses = function (callback) {
     Course.find( callback);
-}
+};
 
 module.exports.getCoursesBySemesterAndYear = function (semester, year, callback) {
     Course.find({ 'semester': semester, 'year': year }, callback);

@@ -1,0 +1,65 @@
+<app-admin-sidebar></app-admin-sidebar>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-2 d-none d-md-block"></div>
+    <div class="col-md-10 d-none d-md-block">
+      <h3>Add New Examination(Module)</h3>
+      <form (submit)="onSubmit(); myForm.reset()" #myForm="ngForm">
+        <div class="form-group">
+          <label>Module Name</label>
+          <input type="text" class="form-control" placeholder="Enter course name" [(ngModel)]="course_name"
+                 name="course_name">
+        </div>
+        <div class="form-group">
+          <label>Module Code</label>
+          <input type="text" class="form-control" placeholder="Enter course code" [(ngModel)]="course_code"
+                 name="course_code">
+        </div>
+        <div class="form-group">
+          <label>Year</label>
+          <select class="custom-select" [(ngModel)]="year" name="year">
+            <option value="1" selected>1</option>
+            <option value="2">2</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Semester</label>
+          <select class="custom-select" [(ngModel)]="semester" name="semester">
+            <option value="1" selected>1</option>
+            <option value="2">2</option>
+            <option value="3">Throughout Year</option>
+          </select>
+        </div>
+        <input type="submit" class="btn btn-outline-dark" value="Submit">
+      </form>
+    </div>
+  </div>
+</div>
+<hr>
+<div class="row">
+  <div class="col-md-2 d-none d-md-block"></div>
+  <div class="col-md-10 d-none d-md-block">
+    <h3>Current Examinations</h3>
+    <table *ngIf="courses" class="table">
+      <thead class="thead-dark">
+      <tr class="text-center">
+        <th scope="col">#</th>
+        <th scope="col">Module Name</th>
+        <th scope="col">Module Code</th>
+        <th scope="col">Year</th>
+        <th scope="col">Semester</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let course of courses; let i = index" [attr.data-index]="i" class="text-center text-uppercase">
+        <th scope="row">{{i+1}}</th>
+        <td>{{ course.course_name}}</td>
+        <td>{{ course.course_code}}</td>
+        <td>{{ course.year}}</td>
+        <td>{{ course.semester}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
