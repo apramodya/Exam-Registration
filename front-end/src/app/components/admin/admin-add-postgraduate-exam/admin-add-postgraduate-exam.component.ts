@@ -44,16 +44,16 @@ export class AdminAddPostgraduateExamComponent implements OnInit {
     };
 
     if (!this.validateService.validateCourse(module)) {
-      this.flashMessages.show('Fill missing fields', { cssClass: 'alert-danger', timeout: 3000 });
+      this.flashMessages.show('Fill missing fields', {cssClass: 'alert-danger', timeout: 3000});
       return false;
     }
     // add module
     this.moduleService.addModule(module).subscribe(data => {
       if (data.success == true) {
-        this.flashMessages.show(data.msg, { cssClass: 'alert-success', timeout: 3000 });
+        this.flashMessages.show(data.msg, {cssClass: 'alert-success', timeout: 3000});
         this.router.navigate(['/admin/add-postgraduate-exam']);
       } else {
-        this.flashMessages.show(data.msg, { cssClass: 'alert-danger', timeout: 3000 });
+        this.flashMessages.show(data.msg, {cssClass: 'alert-danger', timeout: 3000});
         this.router.navigate(['/admin/add-postgraduate-exam']);
       }
     });
