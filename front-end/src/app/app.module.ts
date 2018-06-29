@@ -26,6 +26,8 @@ import { PostgraduateRepeatExamRegistrationComponent } from './components/postgr
 import { PostgraduateDashboardComponent } from './components/postgraduate/postgraduate-dashboard/postgraduate-dashboard.component';
 import { AdminAddPostgraduateExamComponent } from './components/admin/admin-add-postgraduate-exam/admin-add-postgraduate-exam.component';
 import {ModuleService} from "./services/module.service";
+import { ReportPostgraduateComponent } from './components/admin/reports/report-postgraduate/report-postgraduate.component';
+import { ReportUndergraduateComponent } from './components/admin/reports/report-undergraduate/report-undergraduate.component';
 
 
 const appRoutes: Routes = [
@@ -42,6 +44,8 @@ const appRoutes: Routes = [
   {path: 'admin/add-postgraduate-exam', component: AdminAddPostgraduateExamComponent, canActivate: []},
   {path: 'admin/add-user', component: AdminAddUserComponent, canActivate: []},
   {path: 'admin/add-current-status', component: AdminCurrentStatusComponent, canActivate: []},
+  {path: 'admin/reports/undergraduate', component: ReportUndergraduateComponent},
+  {path: 'admin/reports/postgraduate', component: ReportPostgraduateComponent},
 ];
 
 @NgModule({
@@ -62,6 +66,8 @@ const appRoutes: Routes = [
     PostgraduateRepeatExamRegistrationComponent,
     PostgraduateDashboardComponent,
     AdminAddPostgraduateExamComponent,
+    ReportPostgraduateComponent,
+    ReportUndergraduateComponent,
   ],
   imports: [
     BrowserModule,
