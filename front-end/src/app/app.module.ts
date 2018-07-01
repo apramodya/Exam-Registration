@@ -28,6 +28,7 @@ import { AdminAddPostgraduateExamComponent } from './components/admin/admin-add-
 import {ModuleService} from "./services/module.service";
 import { ReportPostgraduateComponent } from './components/admin/reports/report-postgraduate/report-postgraduate.component';
 import { ReportUndergraduateComponent } from './components/admin/reports/report-undergraduate/report-undergraduate.component';
+import {ExamService} from "./services/exam.service";
 
 
 const appRoutes: Routes = [
@@ -76,7 +77,7 @@ const appRoutes: Routes = [
     FlashMessagesModule.forRoot(),
     HttpClientModule,
   ],
-  providers: [AuthService, ValidateService, FlashMessagesService, CourseService, StatusService, ModuleService],
+  providers: [AuthService, ValidateService, FlashMessagesService, CourseService,ExamService, StatusService, ModuleService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

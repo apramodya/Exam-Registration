@@ -4,6 +4,7 @@ import {AuthService} from '../../../services/auth.service';
 import {Router} from '@angular/router';
 import {FlashMessagesService} from 'angular2-flash-messages';
 import {StatusService} from '../../../services/status.service';
+import {ExamService} from "../../../services/exam.service";
 
 @Component({
   selector: 'app-exam-registration',
@@ -20,11 +21,13 @@ export class ExamRegistrationComponent implements OnInit {
   checkedCodeList = [];
   checkedNameList = [];
   c = [];
+  d = [];
 
   constructor(
     private courseService: CourseService,
     private authService: AuthService,
     private statusService: StatusService,
+    private examsService: ExamService,
     private router: Router,
     private flashMessages: FlashMessagesService) {
 
@@ -75,16 +78,30 @@ export class ExamRegistrationComponent implements OnInit {
 
   onConfirm() {
     for (let i = 0; i < this.checkedCodeList.length; i++) {
+      // on submitting registered courses add to array of students documents
       this.c[this.c.length] = {'code': this.checkedCodeList[i], 'subject': this.checkedNameList[i]};
+      // on submitting registered courses add to array to exams document
+      this.d[this.d.length] = {
+        'index_number': this.user.index_number,
+        'course_code': this.checkedCodeList[i],
+        'year': this.year,
+        'type': this.user.type
+      };
     }
     const exam = {
       courses: this.c,
     };
-    // console.log(exam);
+
+    for (let i = 0; i < this.d.length; i++) {
+      this.examsService.addCourse(this.d[i]).subscribe(data => {
+        data
+      });
+    }
+
 
     this.authService.updateExam(this.id, exam).subscribe(data => {
       if (data.success) {
-        console.log(data);
+        // console.log(data);
         this.flashMessages.show(data.msg, {cssClass: 'alert-success', timeout: 3000});
         this.router.navigate(['/student/dashboard']);
       } else {
