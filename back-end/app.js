@@ -7,8 +7,10 @@ let mongoose = require('mongoose');
 let config = require('./config/database');
 const users = require('./routes/users');
 const courses = require('./routes/courses');
-const status = require('./routes/status');
 const modules = require('./routes/modules');
+const exams = require('./routes/exams');
+const status = require('./routes/status');
+
 // mongo db using mlab
 mongoose.connect(config.database);
 mongoose.connection.on('connected', function () {
@@ -32,6 +34,7 @@ require('./config/passport')(passport);
 app.use('/users', users);
 app.use('/courses', courses);
 app.use('/modules', modules);
+app.use('/exams', exams);
 app.use('/status', status);
 
 //index route

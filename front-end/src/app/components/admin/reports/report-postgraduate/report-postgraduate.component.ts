@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import * as JsPDF from 'jspdf';
 import 'jspdf-autotable';
 
@@ -9,12 +9,12 @@ import 'jspdf-autotable';
 })
 export class ReportPostgraduateComponent implements OnInit {
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }
 
-  
 
   genPDF() {
     var columns = ["ID", "Name", "Country"];

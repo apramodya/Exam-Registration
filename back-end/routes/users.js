@@ -61,6 +61,14 @@ router.post('/authenticate', (req, res, next) => {
     })
 });
 
+// get users
+router.get('/all-users', function (req, res) {
+    User.getUsers(function (err, users) {
+        if (err) return res.json({success: false, msg: 'Failed to find users'});
+        else return res.json(users);
+    })
+});
+
 // profile
 router.get('/profile', passport.authenticate('jwt', {session: false}), (req, res, next) => {
     res.json({user: req.user});
