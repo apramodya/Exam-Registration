@@ -6,7 +6,7 @@ const Exam = require('../models/exams');
 router.post('/add', function (req, res, next) {
     let newExam = new Exam({
         index_number: req.body.index_number,
-        course_code: req.body.course_code,
+        courses: req.body.courses,
         year: req.body.year,
         type: req.body.type
     });
@@ -35,7 +35,7 @@ router.get('/getRegisteredExamsByCourseCode_undergraduate/:code', function (req,
     })
 });
 
-// get exams by code
+// get exams by year
 router.get('/getRegisteredExamsByYear_undergraduate/:year', function (req, res, next) {
     let type = 1;
     let year = req.params.year;

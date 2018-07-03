@@ -47,6 +47,7 @@ export class AdminAddExamComponent implements OnInit {
       this.flashMessages.show('Fill missing fields', { cssClass: 'alert-danger', timeout: 3000 });
       return false;
     }
+
     // add course
     this.courseService.addCourse(course).subscribe(data => {
       if (data.success == true) {

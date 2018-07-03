@@ -44,14 +44,14 @@ const UserSchema = mongoose.Schema({
 const User = module.exports = mongoose.model('User', UserSchema);
 
 module.exports.getUsers = function (callback) {
-    User.find( callback);
+    User.find({ 'type': 1 },callback);
 };
 
 module.exports.getUserById = function (id, callback) {
     User.findById(id, callback);
 };
 module.exports.getUserByIndexNumber = function (index_number, callback) {
-    const query = { index_number: index_number };
+    const query = {index_number: index_number};
     User.findOne(query, callback);
 };
 module.exports.addUser = function (user, callback) {
@@ -74,7 +74,7 @@ module.exports.comparePassword = function (candidatePassword, hash, callback) {
 
 module.exports.updateUser = function (id, user, callback) {
     User.findOneAndUpdate(
-        { _id: id },
+        {_id: id},
         {
             $set: {
                 name: user.name,
@@ -86,7 +86,7 @@ module.exports.updateUser = function (id, user, callback) {
 
 module.exports.addExam = function (id, exam, callback) {
     User.findOneAndUpdate(
-        { _id: id },
+        {_id: id},
         {
             $set: {
                 courses: exam.courses,
@@ -97,7 +97,7 @@ module.exports.addExam = function (id, exam, callback) {
 
 module.exports.addRepeatExam = function (id, exam, callback) {
     User.findOneAndUpdate(
-        { _id: id },
+        {_id: id},
         {
             $set: {
                 repeat_courses: exam.repeat_courses,

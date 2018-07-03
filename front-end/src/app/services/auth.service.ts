@@ -41,6 +41,14 @@ export class AuthService {
       .map(res => res);
   }
 
+  getAllUsers(): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+    });
+    return this.http.get('http://localhost:3000/users/all-users', {headers: headers})
+      .map(data => data);
+  }
+
   updateUser(id, user): Observable<any> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',

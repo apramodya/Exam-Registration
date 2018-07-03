@@ -24,4 +24,12 @@ export class ExamService {
       .map(data => data);
   }
 
+  getCoursesByYear(year): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+    });
+    return this.http.get('http://localhost:3000/exams//getRegisteredExamsByYear_undergraduate/' + year, {headers: headers})
+      .map(data => data);
+  }
+
 }

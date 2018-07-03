@@ -4,9 +4,7 @@ const ExamSchema = mongoose.Schema({
     index_number: {
         type: Number
     },
-    course_code: {
-        type: String
-    },
+    courses: [],
     year: {
         type: Number
     },
@@ -28,8 +26,8 @@ module.exports.getAllRegisteredExams_undergraduate = function (type, callback) {
     Exam.find({'type': type}, callback);
 };
 
-module.exports.getRegisteredExamsByCourseCode_undergraduate = function (code, type, callback) {
-    Exam.find({'course_code': code, 'type': type}, callback);
+module.exports.getRegisteredExamsByCourseCode_undergraduate = function (course_code, type, callback) {
+    Exam.find({'course_code': course_code, 'type': type}, callback);
 };
 
 module.exports.getRegisteredExamsByYear_undergraduate = function (year, type, callback) {

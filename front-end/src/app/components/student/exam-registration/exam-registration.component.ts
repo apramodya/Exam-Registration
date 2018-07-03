@@ -55,7 +55,7 @@ export class ExamRegistrationComponent implements OnInit {
   ngOnInit() {
     // get status
     this.isAccepting = this.statusService.isAccepting();
-    console.log(this.isAccepting);
+    // console.log(this.isAccepting);
   }
 
   check(code, name) {
@@ -80,23 +80,11 @@ export class ExamRegistrationComponent implements OnInit {
     for (let i = 0; i < this.checkedCodeList.length; i++) {
       // on submitting registered courses add to array of students documents
       this.c[this.c.length] = {'code': this.checkedCodeList[i], 'subject': this.checkedNameList[i]};
-      // on submitting registered courses add to array to exams document
-      this.d[this.d.length] = {
-        'index_number': this.user.index_number,
-        'course_code': this.checkedCodeList[i],
-        'year': this.year,
-        'type': this.user.type
-      };
+
     }
     const exam = {
       courses: this.c,
     };
-
-    for (let i = 0; i < this.d.length; i++) {
-      this.examsService.addCourse(this.d[i]).subscribe(data => {
-        data
-      });
-    }
 
 
     this.authService.updateExam(this.id, exam).subscribe(data => {
